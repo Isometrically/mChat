@@ -1,6 +1,3 @@
--- @modulum || October 3rd, 2016
--- Install mChat via command bar. Credit to Nevermore Engine by @Quenty for the idea/concept of the installer.
-
 local HttpService = game.HttpService
 local URLs = {
 	"https://raw.githubusercontent.com/m0dulum/mChat/master/client.lua",
