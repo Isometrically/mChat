@@ -15,7 +15,7 @@ local function construct(id)
 		local pb = Instance.new("Frame", cb)
 		local lg = Instance.new("Frame", g)
 		local ib = Instance.new("TextBox", pb)
-		local dt = Instance.new("TextBox", cb)
+		local dt = Instance.new("TextButton", cb)
 		
 		local ms = Instance.new("TextLabel", tm)
 		local pl = Instance.new("TextLabel", tm)
@@ -121,5 +121,4 @@ f.Name    = "remote"
 reo.Name  = "chat"
 ret.Name  = "whisper"
 
-print("clearing..." .. "\n" .. string.rep("\n", 99))
 print("[mChat] Load complete!")
