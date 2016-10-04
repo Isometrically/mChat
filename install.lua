@@ -33,25 +33,25 @@ local function construct(id)
 		pl.Name = "plr"
 		
 		cb.BackgroundTransparency = 1
-		cb.Position 			  = UDim2.new(0, 0, 1, -30)
-		cb.Size					  = UDim2.new(1, 0, 0, 30)
+		cb.Position 		 	  = UDim2.new(0, 0, 1, -30)
+		cb.Size			  		  = UDim2.new(1, 0, 0, 30)
 		
 		pb.BackgroundTransparency = 0.5
-		pb.BorderSizePixel		  = 0
-		pb.BackgroundColor3	  = Color3.fromRGB(0, 0, 0)
-		pb.Position				  = UDim2.new(0, 0, 1, 0)
-		pb.Size					  = UDim2.new(1, 0, 1, 0)
+		pb.BorderSizePixel	 	  = 0
+		pb.BackgroundColor3	 	  = Color3.fromRGB(0, 0, 0)
+		pb.Position		  		  = UDim2.new(0, 0, 1, 0)
+		pb.Size			  		  = UDim2.new(1, 0, 1, 0)
 		
 		ib.BackgroundTransparency = 1
-		ib.Position				  = UDim2.new(0.01, 0, 0, 0)
-		ib.Size					  = UDim2.new(0.98, 0, 1, 0)
-		ib.Font					  = Enum.Font.SourceSans
-		ib.FontSize				  = Enum.FontSize.Size18
-		ib.TextColor3			  = Color3.fromRGB(255, 255, 255)
+		ib.Position		 		  = UDim2.new(0.01, 0, 0, 0)
+		ib.Size			 		  = UDim2.new(0.98, 0, 1, 0)
+		ib.Font			 		  = Enum.Font.SourceSans
+		ib.FontSize		 		  = Enum.FontSize.Size18
+		ib.TextColor3		  	  = Color3.fromRGB(255, 255, 255)
 		ib.TextStrokeTransparency = 1
-		ib.TextXAlignment		  = Enum.TextXAlignment.Left
-		ib.TextYAlignment		  = Enum.TextYAlignment.Center
-		ib.Text					  = ""
+		ib.TextXAlignment	  	  = Enum.TextXAlignment.Left
+		ib.TextYAlignment	  	  = Enum.TextYAlignment.Center
+		ib.Text			  		  = ""
 		
 		dt.BackgroundTransparency = 1
 		dt.Position				  = UDim2.new(0.01, 0, 0, 0)
