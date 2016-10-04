@@ -50,7 +50,7 @@ local function construct(id)
 		ib.TextStrokeTransparency = 1
 		ib.TextXAlignment		  = Enum.TextXAlignment.Left
 		ib.TextYAlignment		  = Enum.TextYAlignment.Center
-		ib.Text					  = nil
+		ib.Text					  = ""
 		
 		dt.BackgroundTransparency = 1
 		dt.Position				  = UDim2.new(0.01, 0, 0, 0)
@@ -105,10 +105,11 @@ end
 
 for i, v in pairs(URLs) do
 	local loaded  	 = HttpService:GetAsync(v)
-	local identifier = string.sub(0, 9)
-	
+	local identifier = string.sub(loaded, 0, 9)
+			
 	local c  = construct(identifier)
-	c.Source = loaded
+	print(v)
+	c.Source = HttpService:GetAsync(v)
 	
 	print("[mChat] " .. i + 1 .. "/" .. #URLs)
 end
