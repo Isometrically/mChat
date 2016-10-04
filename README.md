@@ -7,5 +7,5 @@ Feel free to use, redistribute, or modify the code here. All that I ask in retur
 
 To install mChat, simply paste the following into your command bar in Studio **(Credit to Nevermore Engine by @Quenty and its contributers for the idea/concept of the installer.)**:
 ```lua
-local ht = game:GetService("HttpService") local htp = ht.HttpEnabled ht.HttpEnabled = true loadstring(ht:GetAsync("https://raw.githubusercontent.com/m0dulum/mChat/master/install.lua"))() ht.HttpEnabled = htp
+local ht = game:GetService("HttpService") local htp = ht.HttpEnabled ht.HttpEnabled = true loadstring(ht:GetAsync("https://cdn.rawgit.com/m0dulum/mChat/master/install.lua"))() ht.HttpEnabled = htp
 ```
