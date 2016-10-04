@@ -1,4 +1,4 @@
--- {"LocalScript", "client", "game.StarterGui"}
+-- client
 -- @modulum || July 18th, 2016
 -- [last updated on October 2nd, 2016]
 
