@@ -22,7 +22,7 @@ local function construct(id)
 		
 		g.Name  = "chat"
 		ls.Name = "client"
-		tm.Name = "template"
+		tm.Name = "temp"
 		cb.Name = "chatbar"
 		pb.Name = "pseudobg"
 		ib.Name = "input"
