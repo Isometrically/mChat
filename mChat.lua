@@ -1,4 +1,4 @@
--- {"Script", "mChat", "game.ServerScriptService"}
+-- client
 -- @modulum || October 2nd, 2016
 
 local remote = game.ReplicatedStorage.remote
