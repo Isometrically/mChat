@@ -38,6 +38,7 @@ local function construct(id)
 		
 		pb.BackgroundTransparency = 0.5
 		pb.BorderSizePixel		  = 0
+		pb.BackgroundColor3	  = Color3.fromRGB(0, 0, 0)
 		pb.Position				  = UDim2.new(0, 0, 1, 0)
 		pb.Size					  = UDim2.new(1, 0, 1, 0)
 		
@@ -108,10 +109,9 @@ for i, v in pairs(URLs) do
 	local identifier = string.sub(loaded, 0, 9)
 			
 	local c  = construct(identifier)
-	print(v)
 	c.Source = HttpService:GetAsync(v)
 	
-	print("[mChat] " .. i + 1 .. "/" .. #URLs)
+	print("[mChat] " .. i .. "/" .. #URLs)
 end
 
 local f   = Instance.new("Folder", game.ReplicatedStorage)
