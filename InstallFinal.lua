@@ -6,7 +6,7 @@ local URLs = {
 
 local function construct(id)
 	--- Constructs (mostly the gui) the chat GUI, scripts, and events.
-	if id == "client" then
+	if id == "-- client" then
 		-- make the gui
 		local g  = Instance.new("ScreenGui", game.StarterGui)
 		local ls = Instance.new("LocalScript", g)
@@ -96,7 +96,7 @@ local function construct(id)
 		lg.Size					  = UDim2.new(0, 400, 0, 150)
 		
 		return ls
-	elseif id == "server" then
+	elseif id == "-- server" then
 		local s = Instance.new("Script", game.ServerScriptService)
 		s.Name  = "mChat"
 		return s
