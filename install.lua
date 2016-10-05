@@ -1,7 +1,7 @@
 local HttpService = game.HttpService
 local URLs = {
-	"https://raw.githubusercontent.com/m0dulum/mChat/master/client.lua",
-	"https://raw.githubusercontent.com/m0dulum/mChat/master/mChat.lua"
+	"https://cdn.rawgit.com/m0dulum/mChat/master/client.lua",
+	"https://cdn.rawgit.com/m0dulum/mChat/master/mChat.lua"
 }
 
 local function construct(id)
