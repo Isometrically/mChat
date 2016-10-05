@@ -1,6 +1,5 @@
--- client
 -- @modulum || July 18th, 2016
--- [last updated on October 2nd, 2016]
+-- [last updated on September 29th, 2016]
 
 ----------------------------------------------
 
@@ -11,7 +10,6 @@
 
 ----------------------------------------------
 
--- @todo: update these colors
 local ChatColors = { Color3.fromRGB(255, 119, 119), Color3.fromRGB(167, 214, 255),
 					 Color3.fromRGB(96, 255, 162),  Color3.fromRGB(233, 153, 255),
 					 Color3.fromRGB(255, 201, 156), Color3.fromRGB(255, 240, 160),
@@ -23,6 +21,7 @@ local StarterGui = game:GetService("StarterGui")
 
 local LocalPlayer = game.Players.LocalPlayer
 local remote = game.ReplicatedStorage.remote
+local muted  = remote.muted
 
 local detect = script.Parent.chatbar.detect
 local pseudobg = script.Parent.chatbar.pseudobg
@@ -32,9 +31,7 @@ local t1, t2, t3
 
 StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
 
---[[pcall(function()
-	StarterGui:SetCore("TopbarEnabled", false)
-end)--]]
+
 
 function GetNameValue(PlayerName)
 	--snipped from github /roblox/corescripts
@@ -60,42 +57,12 @@ end
 
 local function sanitize(ustring)
 	--- remove additonal spaces, tabs, et cetera
-	-- @param [ustring]: string, string to sanetize
+	-- @param [ustring]: string, string to sanitize
 	local nstring = string.gsub(ustring, "%s+", " ")
 	if nstring ~= nil then
 		return nstring
 	else
 		return nil
-	end
-end
-
-local function release()
-	--- releases the textbox for input
-	typing = false
-	pseudobg:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quart", 0.25, true)
-	detect.Visible = true
-	
-	local input = pseudobg.input.Text
-	if input ~= nil then
-		pseudobg.input:ReleaseFocus()
-		
-		local sinput = sanitize(input)
-		if sinput ~= "" and sinput ~= string.char(32) then
-			if sinput == "/sc" then
-				remote.chat:FireServer("ROOT")
-			elseif string.sub(sinput, 0, 2) == "/w" then
-				local ps = string.sub(sinput, 4)
-				local fs = string.find(ps, string.char(32))
-				local fn = string.sub(ps, 0, fs - 1)
-				local ms = string.sub(ps, fs + 1)
-				
-				if ps ~= nil and game.Players:FindFirstChild(fn) and ms ~= nil and game.Players[fn] ~= LocalPlayer then
-					remote.whisper:FireServer(game.Players[fn], ms)
-				end
-			else
-				remote.chat:FireServer(sinput)
-			end
-		end
 	end
 end
 
@@ -211,11 +178,62 @@ local function cmsg(plr, input, special)
 	-- POSITIONING ENDS HERE --
 end
 
+local function release()
+	--- releases the textbox for input
+	typing = false
+	pseudobg:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quart", 0.25, true)
+	detect.Visible = true
+	
+	local input = pseudobg.input.Text
+	if input ~= nil then
+		pseudobg.input:ReleaseFocus()
+		
+		local sinput = sanitize(input)
+		if sinput ~= "" and sinput ~= string.char(32) then
+			if sinput == "/sc" then
+				remote.chat:FireServer("ROOT")
+			elseif string.lower(string.sub(sinput, 0, 2)) == "/w" then
+				local ps = string.sub(sinput, 4)
+				local fs = string.find(ps, string.char(32))
+				local fn = string.sub(ps, 0, fs - 1)
+				local ms = string.sub(ps, fs + 1)
+				
+				if ps ~= nil and game.Players:FindFirstChild(fn) and ms ~= nil and game.Players[fn] ~= LocalPlayer then
+					remote.whisper:FireServer(game.Players[fn], ms)
+				end
+			elseif string.lower(string.sub(sinput, 0, 5)) == "/mute" then
+				local fn = string.sub(sinput, 7)
+				
+				if game.Players:FindFirstChild(fn) and game.Players[fn] ~= LocalPlayer then
+					local sv = Instance.new("StringValue", muted)
+					sv.Name  = fn
+					sv.Value = fn
+					
+					cmsg("[SYSTEM]", fn .. " was successfully muted.", "sys")
+				else
+					cmsg("[SYSTEM]", "Could not find " .. fn .. ".", "sys")
+				end
+			elseif string.lower(string.sub(sinput, 0, 7)) == "/unmute" then
+				local fn = string.sub(sinput, 9)
+				
+				if muted:FindFirstChild(fn) then
+					muted[fn]:Destroy()
+					cmsg("[SYSTEM]", fn .. " was successfully unmuted.", "sys")
+				end
+			else
+				remote.chat:FireServer(sinput)
+			end
+		end
+	end
+end
+
 remote.chat.OnClientEvent:connect(function(plr, input, special)	
 	if special == "sys" then
 		cmsg("[SYSTEM]", input, special)
 	else
-		cmsg(plr.Name, input, special)
+		if not muted:FindFirstChild(plr.Name) then
+			cmsg(plr.Name, input, special)
+		end
 	end
 end)
 
@@ -223,15 +241,33 @@ remote.whisper.OnClientEvent:connect(function(plr, msg, sor)
 	if sor == "send" then
 		cmsg("To " .. "[" .. plr.Name .. "]", msg, "whisper")
 	elseif sor == "recieve" then
-		cmsg("From " .. "[" .. plr.Name .. "]", msg, "whisper")
+		if not muted:FindFirstChild(plr.Name) then
+			cmsg("From " .. "[" .. plr.Name .. "]", msg, "whisper")
+		end
 	end
 end)
 
 UserInputService.InputBegan:connect(function(input, gpe)
 	if not gpe then
 		if input.UserInputType == Enum.UserInputType.Keyboard then
-			if input.KeyCode == Enum.KeyCode.Slash then
+			if input.KeyCode == Enum.KeyCode.Slash or input.KeyCode == Enum.KeyCode.Return then
 				focus()
+			elseif input.KeyCode == Enum.KeyCode.Seven then
+				-- probably a really terrible solution, if anyone has anything better send a push request
+				local gkp = UserInputService:GetKeysPressed()
+				local shi, sev = false, false
+				
+				for _,v in pairs(gkp) do
+					if v.KeyCode == Enum.KeyCode.LeftShift then
+						shi = true
+					elseif v.KeyCode == Enum.KeyCode.Seven then
+						sev = true
+					end
+				end
+				
+				if shi and sev then
+					focus()
+				end
 			end
 		end
 	end
