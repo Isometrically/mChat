@@ -31,8 +31,6 @@ local t1, t2, t3
 
 StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
 
-
-
 function GetNameValue(PlayerName)
 	--snipped from github /roblox/corescripts
 	local value	= 0
@@ -89,7 +87,9 @@ local function cmsg(plr, input, special)
 	local t = script.temp:Clone()
 	
 	if special == "mod" then
-		t.msg.TextColor3 = Color3.fromRGB(255, 223, 94) --255, 219, 89
+		t.msg.TextColor3 = Color3.fromRGB(255, 223, 94)
+	elseif special == "yellow" then
+		t.msg.TextColor3 = Color3.fromRGB(255, 180, 252)
 	elseif special == "sys" then
 		t.plr.TextColor3 = Color3.fromRGB(0, 215, 136)
 		t.plr.Text = "[SYSTEM]: "
