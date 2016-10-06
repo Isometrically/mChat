@@ -3,9 +3,10 @@
 
 local remote = game.ReplicatedStorage.remote
 local chat = game:GetService("Chat")
+local studio = game:GetService("RunService"):IsStudio()
 
-remote.chat.OnServerEvent:connect(function(plr, input)
-	local filtered = chat:FilterStringAsync(input, plr, plr)
+remote.chat.OnServerEvent:connect(function(plr, filtered)
+	filtered = not studio and chat:FilterStringAsync(filtered, plr, plr) or filtered
 	
 	if plr.UserId == 142762267 then
 		remote.chat:FireAllClients(plr, filtered, "mod")
@@ -16,10 +17,10 @@ remote.chat.OnServerEvent:connect(function(plr, input)
 	end
 end)
 
-remote.whisper.OnServerEvent:connect(function(plr, musr, str)
-	local filtered = chat:FilterStringAsync(str, plr, plr)
-	remote.whisper:FireClient(plr, musr, str, "send")
-	remote.whisper:FireClient(musr, plr, str, "recieve")
+remote.whisper.OnServerEvent:connect(function(plr, musr, filtered)
+	filtered = not studio and chat:FilterStringAsync(filtered, plr, plr) or filtered
+	remote.whisper:FireClient(plr, musr, filtered, "send")
+	remote.whisper:FireClient(musr, plr, filtered, "recieve")
 end)
 
 game.Players.PlayerAdded:connect(function(plr)
