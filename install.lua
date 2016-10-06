@@ -117,8 +117,10 @@ end
 local f   = Instance.new("Folder", game.ReplicatedStorage)
 local reo = Instance.new("RemoteEvent", f)
 local ret = Instance.new("RemoteEvent", f)
+local mue = Instance.new("Folder", f)
 f.Name    = "remote"
 reo.Name  = "chat"
 ret.Name  = "whisper"
+mue.Name  = "muted"
 
 print("[mChat] Load complete!")
