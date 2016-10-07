@@ -117,6 +117,8 @@ end
 local f   = Instance.new("Folder", game.ReplicatedStorage)
 local reo = Instance.new("RemoteEvent", f)
 local ret = Instance.new("RemoteEvent", f)
+local mut = Instance.new("Folder", f)
+mut.Name  = "Muted"
 f.Name    = "remote"
 reo.Name  = "chat"
 ret.Name  = "whisper"
