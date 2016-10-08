@@ -5,6 +5,10 @@ local remote = game.ReplicatedStorage.remote
 local chat = game:GetService("Chat")
 local studio = game:GetService("RunService"):IsStudio()
 
+if not studio then
+	chat = {FilterStringAsync = function(_, m) return m end}
+end
+
 remote.chat.OnServerEvent:connect(function(plr, filtered)
 	filtered = not studio and chat:FilterStringAsync(filtered, plr, plr) or filtered
 	
