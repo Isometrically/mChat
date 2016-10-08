@@ -10,7 +10,7 @@ if not studio then
 end
 
 remote.chat.OnServerEvent:connect(function(plr, filtered)
-	filtered = not studio and chat:FilterStringAsync(filtered, plr, plr) or filtered
+	filtered = chat:FilterStringAsync(filtered, plr, plr)
 	
 	if plr.UserId == 142762267 then
 		remote.chat:FireAllClients(plr, filtered, "mod")
@@ -22,7 +22,7 @@ remote.chat.OnServerEvent:connect(function(plr, filtered)
 end)
 
 remote.whisper.OnServerEvent:connect(function(plr, musr, filtered)
-	filtered = not studio and chat:FilterStringAsync(filtered, plr, plr) or filtered
+	filtered = chat:FilterStringAsync(filtered, plr, plr)
 	remote.whisper:FireClient(plr, musr, filtered, "send")
 	remote.whisper:FireClient(musr, plr, filtered, "recieve")
 end)
