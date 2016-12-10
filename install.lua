@@ -80,6 +80,7 @@ local function construct(id)
 		ms.TextXAlignment		  = Enum.TextXAlignment.Left
 		ms.TextYAlignment		  = Enum.TextYAlignment.Top
 		ms.TextStrokeTransparency = 1
+		ms.TextWrapped = true
 		
 		pl.BackgroundTransparency = 1
 		pl.Position				  = UDim2.new(0, 0, 0, 0)
