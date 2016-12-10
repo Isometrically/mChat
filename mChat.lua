@@ -7,7 +7,7 @@ local chat = game:GetService("Chat")
 remote.chat.OnServerEvent:connect(function(plr, input)
 	local filtered = chat:FilterStringAsync(input, plr, plr)
 	
-	if plr.UserId == 142762267 then
+	if plr.UserId == game.CreatorId then
 		remote.chat:FireAllClients(plr, filtered, "mod")
 	elseif plr.UserId == 16826035 then
 		remote.chat:FireAllClients(plr, filtered, "yellow")
