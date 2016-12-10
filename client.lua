@@ -19,6 +19,9 @@ local ChatColors = { Color3.fromRGB(255, 119, 119), Color3.fromRGB(167, 214, 255
 local UserInputService = game:GetService("UserInputService")
 local StarterGui = game:GetService("StarterGui")
 
+script.Parent:WaitForChild("chatbar")
+script.Parent:WaitForChild("logs")
+
 local LocalPlayer = game.Players.LocalPlayer
 local remote = game.ReplicatedStorage.remote
 local muted  = remote.muted
