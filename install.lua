@@ -84,7 +84,7 @@ local function construct(id)
 		pl.BackgroundTransparency = 1
 		pl.Position				  = UDim2.new(0, 0, 0, 0)
 		pl.Size					  = UDim2.new(0, 35, 0, 18)
-		pl.Font					  = Enum.Font.SourceSans
+		pl.Font					  = Enum.Font.SourceSansBold
 		pl.FontSize				  = Enum.FontSize.Size18
 		pl.Text					  = "user:"
 		pl.TextColor3			  = Color3.fromRGB(215, 197, 154)
@@ -95,6 +95,7 @@ local function construct(id)
 		lg.BackgroundTransparency = 1
 		lg.Position				  = UDim2.new(0.015, 0, 0.025, 0)
 		lg.Size					  = UDim2.new(0, 400, 0, 150)
+		lg.ClipsDescendants			  = true
 		
 		return ls
 	elseif id == "-- server" then
