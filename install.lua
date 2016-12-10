@@ -1,6 +1,6 @@
 local HttpService = game.HttpService
 local URLs = {
-	"https://cdn.rawgit.com/m0dulum/mChat/master/client.lua",
+	"https://raw.githubusercontent.com/m0dulum/mChat/master/client.lua", --https://cdn.rawgit.com/m0dulum/mChat/master/client.lua
 	"https://cdn.rawgit.com/m0dulum/mChat/master/mChat.lua"
 }
 
