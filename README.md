@@ -19,6 +19,9 @@ To install mChat, simply paste the following into your command bar in Studio **(
 local ht = game:GetService("HttpService") local htp = ht.HttpEnabled ht.HttpEnabled = true loadstring(ht:GetAsync("https://cdn.rawgit.com/m0dulum/mChat/master/install.lua"))() ht.HttpEnabled = htp
 ```
 ##Version History
+###Version 1.2
+- Fixed multi-line. Should be functioning if you installed through the installer.
+
 ###Version 1.1
 - Added Enter/Shift + 7 support
 - Added /mute and /unmute
